@@ -4,13 +4,23 @@ let cors = require("cors");
 let multer = require("multer");
 let jwt = require("jsonwebtoken");
 let bcrypt = require("bcrypt");
+let dotenv = require("dotenv");
+dotenv.config();
 
 
 let app = express();
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded());
-app.use('/profilePics', express.static('profilePics'))
+app.use('/profilePics', express.static('profilePics'));
+
+const path = require("path");
+
+app.use(express.static(path.join(__dirname, "./client/build")));
+
+app.get("*", (req,res) =>{
+res.sendFile(path.join(__dirname, "./client/build/index.html"));
+});
 
 
 const storage = multer.diskStorage({
@@ -181,8 +191,8 @@ app.delete("/deleteProfile",upload.none(),async(req,res)=>{
 })
 
 
-app.listen(3333,()=>{
-    console.log("Listening to port 3333")
+app.listen(process.env.PORT,()=>{
+    console.log(`Listening to port ${process.env.PORT}`)
 })
 
 
@@ -208,7 +218,7 @@ let student = new mongoose.model("students",studentSchema,"2507MERNStudents");
 
 let ConctedToMDB = async()=>{
     try{
-         await mongoose.connect("mongodb+srv://mahendrayadagiri45_db_user:Mahi4536@cluster0.nbqhalz.mongodb.net/Batch2507?appName=Cluster0");
+         await mongoose.connect(process.env.MDBURL);
          console.log("Successfully Connected to MDB");
          
 
