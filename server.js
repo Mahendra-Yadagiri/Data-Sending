@@ -5,6 +5,7 @@ let multer = require("multer");
 let jwt = require("jsonwebtoken");
 let bcrypt = require("bcrypt");
 let dotenv = require("dotenv");
+const path = require("path");
 dotenv.config();
 
 
