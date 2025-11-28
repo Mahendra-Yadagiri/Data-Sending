@@ -35,7 +35,11 @@ function Dashboard() {
 
       }}>Delete Profile</button>
       <h1>{userDetails.firstName} {userDetails.lastName}</h1>
-      <img src={`/${userDetails.profilePic}`} alt= ''></img>
+      <img 
+  src={`https://data-sending-3.onrender.com/${userDetails.profilePic}`} 
+  alt=""
+/>
+
     </div>
   )
 }

@@ -12,14 +12,21 @@ let app = express();
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded());
-app.use('/profilePics', express.static('profilePics'));
+app.use(
+  "/profilePics",
+  express.static(path.join(__dirname, "profilePics"))
+);
+
 
 const path = require("path");
 
 app.use(express.static(path.join(__dirname, "./client/build")));
 
-app.get("/*", (req,res) =>{
-res.sendFile(path.join(__dirname, "./client/build/index.html"));
+// app.get("/", (req,res) =>{
+// res.sendFile(path.join(__dirname, "./client/build/index.html"));
+// });
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "client/build/index.html"));
 });
 
 
@@ -112,7 +119,7 @@ app.post("/signup",upload.single("profilePic"),async(req,res)=>{
     console.log(req.body);
 
     let hashedPassword = await bcrypt.hash(req.body.password,10)
-    // res.json(["Some dummy data"])
+    
     try{
         let user = new student({
             firstName:req.body.firstName,
