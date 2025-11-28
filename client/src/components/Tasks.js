@@ -15,7 +15,7 @@ function Tasks() {
 
      <h1>{userDetails.firstName} {userDetails.lastName}</h1>
       <img 
-  src={`https://data-sending-3.onrender.com/${userDetails.profilePic}`} 
+  src={`/${userDetails.profilePic}`} 
   alt=""
 />
 <img src={`/${userDetails.profilePic}`} alt= ''></img>
