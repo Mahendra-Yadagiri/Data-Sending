@@ -101,7 +101,11 @@ function EditProfile() {
 
             }}></input>
         </div>
-        <img src={profilePic} alt ='' ></img>
+        <img 
+  src={`https://data-sending-3.onrender.com/${userDetails.profilePic}`} 
+  alt=""
+/>
+
         <div>
             
             <button type="button" onClick={()=>{
